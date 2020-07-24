@@ -5,12 +5,12 @@
     <div class="media">
       <div class="media-left">
         <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+            <%= image_tag(@profile.photo) %>
         </figure>
       </div>
       <div class="media-content">
         <p class="title is-4"><%= @profile.name %></p>
-        <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
+        <p class="subtitle is-6">@<%= @profile.name.split.join("_").downcase %></p>
       </div>
     </div>
     <div class="content"><%= @profile.description %></div>
