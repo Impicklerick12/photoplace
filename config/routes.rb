@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :listings
   resources :profiles
 
   get "/", to: "profiles#home", as: "root"

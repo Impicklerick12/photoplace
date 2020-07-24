@@ -14,7 +14,24 @@
       </div>
     </div>
     <div class="content"><%= @profile.description %></div>
+    <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
   </div>
+  <%= @profile.listings.each do |listing| %>
+    <div class="card">
+      <div class="card-content">
+        <p>
+          <%= listing.title %>
+        </p>
+        <p>
+          <%= listing.description %>
+        </p>
+        <p>
+          <%= listing.price %>
+        </p>
+        <button class="button is-danger"><%= link_to 'Show Listing', listing %></button>
+      </div>
+    </div>
+  <% end %>
   <% if @profile.user_id == current_user.id %>
     <footer class="card-footer">
       <a class="card-footer-item" <%= link_to 'Show', @profile %></a>
