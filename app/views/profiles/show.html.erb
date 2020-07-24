@@ -16,7 +16,7 @@
     <div class="content"><%= @profile.description %></div>
     <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
   </div>
-  <%= @profile.listings.each do |listing| %>
+  <% @profile.listings.each do |listing| %>
     <div class="card">
       <div class="card-content">
         <p>
@@ -34,8 +34,7 @@
   <% end %>
   <% if @profile.user_id == current_user.id %>
     <footer class="card-footer">
-      <a class="card-footer-item" <%= link_to 'Show', @profile %></a>
-      <a class="card-footer-item" <%= link_to 'Edit', edit_profile_path(@profile) %></a>
+      <a class="card-footer-item" <%= link_to 'Edit Profile', edit_profile_path(@profile) %></a>
       <a class="card-footer-item" <%= link_to 'Delete Profile', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></a>
     </footer>
   <% end %>
