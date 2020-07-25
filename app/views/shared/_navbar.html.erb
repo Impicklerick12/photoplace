@@ -47,7 +47,7 @@
             <% if user_signed_in? && !Profile.exists?(user_id: current_user.id)%>
               <a class="button is-danger" <%= link_to "Create Photographer Profile!", new_profile_path %></a>
             <% elsif user_signed_in? && Profile.exists?(user_id: current_user.id)%>
-              <a class="button is-danger" <%= link_to "View My Profile", @profile %></a>
+              <a class="button is-danger" <%= link_to "View My Profile", profile_path(current_user.profile.id) %></a>
             <% end %>
             <% if user_signed_in? %>
               <a class="button is-primary" <%= link_to current_user.email, edit_user_registration_path %></a>

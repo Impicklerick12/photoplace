@@ -14,13 +14,17 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
   def new
-    @listing = Listing.new
+    if current_user.profile == nil
+      redirect_to new_profile_path, notice: 'You need to create a profile first!'
+    else
+      @listing = Listing.new
+    end
   end
 
   # GET /listings/1/edit
   def edit
     if @listing.profile_id != current_user.id
-      redirect_to root_path
+      redirect_to root_path 
     end
   end
 
@@ -28,7 +32,7 @@ class ListingsController < ApplicationController
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
-    @listing.profile_id = current_user.id
+    @listing.profile_id = current_user.profile.id
 
     respond_to do |format|
       if @listing.save
@@ -60,7 +64,7 @@ class ListingsController < ApplicationController
   def destroy
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_to profile_path(@listing.profile.id), notice: 'Listing was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
