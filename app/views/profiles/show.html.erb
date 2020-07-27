@@ -1,46 +1,46 @@
-<p id="notice"><%= notice %></p>
-
-<div class="card">
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-        </figure>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4"><%= @profile.name %></p>
+          <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
+        </div>
       </div>
-      <div class="media-content">
-        <p class="title is-4"><%= @profile.name %></p>
-        <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
-      </div>
+      <div class="content"><%= @profile.description %></div>
+      <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
     </div>
-    <div class="content"><%= @profile.description %></div>
-    <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
+    <% @profile.listings.each do |listing| %>
+      <div class="card">
+        <div class="card-content">
+          <p>
+            <%= listing.title %>
+          </p>
+          <p>
+            <%= listing.description %>
+          </p>
+          <p>
+            <%= listing.price %>
+          </p>
+          <p>
+            <%= listing.created_at.strftime("Created on: %B %d, %Y")%>
+          </p>
+          <button class="button is-danger"><%= link_to 'Show Listing', listing %></button>
+        </div>
+      </div>
+    <% end %>
+    <% if @profile.user_id == current_user.id %>
+      <footer class="card-footer">
+        <a class="card-footer-item" <%= link_to 'Edit Profile', edit_profile_path(@profile) %></a>
+        <a class="card-footer-item" <%= link_to 'Delete Profile', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+      </footer>
+    <% end %>
   </div>
-  <% @profile.listings.each do |listing| %>
-    <div class="card">
-      <div class="card-content">
-        <p>
-          <%= listing.title %>
-        </p>
-        <p>
-          <%= listing.description %>
-        </p>
-        <p>
-          <%= listing.price %>
-        </p>
-        <p>
-          <%= listing.created_at.strftime("Created on: %B %d, %Y")%>
-        </p>
-        <button class="button is-danger"><%= link_to 'Show Listing', listing %></button>
-      </div>
-    </div>
-  <% end %>
-  <% if @profile.user_id == current_user.id %>
-    <footer class="card-footer">
-      <a class="card-footer-item" <%= link_to 'Edit Profile', edit_profile_path(@profile) %></a>
-      <a class="card-footer-item" <%= link_to 'Delete Profile', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></a>
-    </footer>
-  <% end %>
-</div>
 
-<a class="button is-danger" <%= link_to 'Back', profiles_path %></a>
+  <a class="button is-danger" <%= link_to 'Back', profiles_path %></a>
+</div>

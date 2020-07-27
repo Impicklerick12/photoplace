@@ -1,23 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @listing.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @listing.description %>
+  </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
+  <p>
+    <strong>Price:</strong>
+    <%= @listing.price %>
+  </p>
 
-<% if @listing.profile_id == current_user.id %>
-<td><%= link_to 'Edit', edit_listing_path(@listing) %></td>
-<td><%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<% end %>
+  <% if @listing.profile_id == current_user.id %>
+  <td><%= link_to 'Edit', edit_listing_path(@listing) %></td>
+  <td><%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
 
-<%= link_to 'Back', profile_path(@listing.profile_id) %>
+  <%= link_to 'Back', profile_path(@listing.profile_id) %>
+</div>
