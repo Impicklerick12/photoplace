@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="card">
   <div class="card-content">
     <div class="media">
@@ -42,5 +40,22 @@
     </footer>
   <% end %>
 </div>
-
+<section class="reviews">
+    <div class="container">
+      <h2 class="subtitle is-5"><strong><%= @profile.reviews.count %></strong> Comments</h2>
+      <div class="review-form">
+        <h3 class="subtitle is-3">Leave a review or comment!</h3>
+        <%= form_with model: [@profile, @review], local: true do |f| %>
+          <%= f.label :review %>
+          <%= f.text_area :review %>
+          <%= f.submit "Save" %>
+        <% end %>
+      </div>
+      <% @reviews.each do |review| %>
+        User ID: <%= review.user_id %><br/>
+        <%= review.review %>
+        <br />
+      <% end %>
+    </div>
+</section>
 <a class="button is-danger" <%= link_to 'Back', profiles_path %></a>
