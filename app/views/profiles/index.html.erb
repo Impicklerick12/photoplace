@@ -5,15 +5,9 @@
     <div class="card-content">
       <div class="media">
         <div class="media-left">
-          <% if profile.photo.attached? %>
-            <figure class="image is-48x48">
-              <%= image_tag(profile.photo) %>
-            </figure>
-          <% else %>
-            <figure class="image is-48x48">
-              <%= image_tag("user.png") %>
-            </figure>
-          <% end %>
+          <figure class="image is-48x48">
+            <%= image_tag profile_photo(profile) %>
+          </figure>
         </div>
         <div class="media-content">
           <p class="title is-4"><%= profile.name %></p>

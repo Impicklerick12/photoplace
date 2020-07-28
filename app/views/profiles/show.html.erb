@@ -2,19 +2,13 @@
   <div class="card-content">
     <div class="media">
       <div class="media-left">
-        <% if @profile.photo.attached? %>
-          <figure class="image is-48x48">
-            <%= image_tag(@profile.photo) %>
-          </figure>
-        <% else %>
-          <figure class="image is-48x48">
-            <%= image_tag("user.png") %>
-          </figure>
-        <% end %>
+        <figure class="image is-48x48">
+          <%= image_tag profile_photo(@profile) %>
+        </figure>
       </div>
       <div class="media-content">
         <p class="title is-4"><%= @profile.name %></p>
-        <p class="subtitle is-6">@<%= @profile.name.split.join("_").downcase %></p>
+        <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
       </div>
     </div>
     <div class="content"><%= @profile.description %></div>
@@ -46,5 +40,22 @@
     </footer>
   <% end %>
 </div>
-
+<section class="reviews">
+    <div class="container">
+      <h2 class="subtitle is-5"><strong><%= @profile.reviews.count %></strong> Comments</h2>
+      <div class="review-form">
+        <h3 class="subtitle is-3">Leave a review or comment!</h3>
+        <%= form_with model: [@profile, @review], local: true do |f| %>
+          <%= f.label :review %>
+          <%= f.text_area :review %>
+          <%= f.submit "Save" %>
+        <% end %>
+      </div>
+      <% @reviews.each do |review| %>
+        <strong>User: </strong><%= review.user.email %><br/>
+        <strong>Review: </strong><%= review.review %>
+        <p> ------------ </p>
+      <% end %>
+    </div>
+</section>
 <a class="button is-danger" <%= link_to 'Back', profiles_path %></a>
