@@ -11,6 +11,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @review = Review.new
+    @reviews = @profile.reviews
   end
 
   # GET /profiles/new
