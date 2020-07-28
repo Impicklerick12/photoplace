@@ -1,23 +1,29 @@
 <h1>Profiles</h1>
 
-<% @profiles.each do |profile| %>
-  <div class="card">
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <%= image_tag profile_photo(profile), class:'is-rounded' %>
-          </figure>
+<section class="profiles">
+  <div class="columns">
+    <% @profiles.each do |profile| %>
+    <div class="column is-one-third">
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <%= image_tag profile_photo(profile), class:'is-rounded' %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title is-4"><%= profile.name %></p>
+              <p class="subtitle is-6">@<%= profile.name.split.join("_").downcase %></p>
+            </div>
+          </div>
+          <div class="content"><%= profile.description %></div>
         </div>
-        <div class="media-content">
-          <p class="title is-4"><%= profile.name %></p>
-          <p class="subtitle is-6">@<%= profile.name.split.join("_").downcase %></p>
-        </div>
+        <footer class="card-footer">
+          <a class="card-footer-item" <%= link_to 'Show', profile %></a>
+        </footer>
       </div>
-      <div class="content"><%= profile.description %></div>
     </div>
-    <footer class="card-footer">
-      <a class="card-footer-item" <%= link_to 'Show', profile %></a>
-    </footer>
+    <% end %>
   </div>
-<% end %>
+</section>
