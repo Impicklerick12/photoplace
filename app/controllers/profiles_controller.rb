@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     if Profile.exists?(user_id: current_user.id)
-      redirect_to root_path
+      redirect_to profile_path(current_user.profile.id), notice: 'You already have a profile created!'
     else
       @profile = Profile.new
     end
@@ -24,8 +24,8 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    if @profile.user_id != current_user.id
-      redirect_to root_path
+    if current_user.id != @profile.user_id
+      redirect_to profiles_path
     end
   end
 
@@ -78,6 +78,6 @@ class ProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def profile_params
-      params.require(:profile).permit(:name, :description, :user_id)
+      params.require(:profile).permit(:name, :description, :user_id, :photo)
     end
 end

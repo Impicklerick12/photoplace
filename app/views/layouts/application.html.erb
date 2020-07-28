@@ -15,19 +15,10 @@
 
   <body>
     <%= render "shared/navbar" %>
-
-    <div class="message is-success">
-        <% if notice %>
-          <div class="message-body"><%= notice %></div>
-        <% end %>
+    <%= render "shared/alerts" %>
+    <div class="container">
+      <%= yield %>
     </div>
-    <div class="message is-warning">
-        <% if alert %>
-          <div class="message-body"><%= alert %></div>
-        <% end %>
-    </div>
-
-    <%= yield %>
 
     <%= render "shared/footer" %>
   </body>
