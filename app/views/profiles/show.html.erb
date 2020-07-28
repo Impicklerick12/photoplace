@@ -9,9 +9,9 @@
       <div class="media-content">
         <p class="title is-4"><%= @profile.name %></p>
         <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
+        <p class="subtitle is-6"><%= @profile.description %></p>
+        <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
       </div>
-      <div class="content"><%= @profile.description %></div>
-      <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
     </div>
   </div>
   <% @profile.listings.each do |listing| %>
