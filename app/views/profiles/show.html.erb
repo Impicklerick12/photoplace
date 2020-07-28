@@ -1,19 +1,24 @@
-<div class="card">
-  <div class="card-content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <%= image_tag profile_photo(@profile) %>
-        </figure>
-      </div>
-      <div class="media-content">
-        <p class="title is-4"><%= @profile.name %></p>
-        <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
-        <p class="subtitle is-6"><%= @profile.description %></p>
-        <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
+<section class="profile">
+  <div class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <%= image_tag profile_photo(@profile), class:'is-rounded' %>
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4"><%= @profile.name %></p>
+          <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
+          <p class="subtitle is-6"><%= @profile.description %></p>
+          <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
+        </div>
       </div>
     </div>
   </div>
+</section>
+
+<section class="listings">
   <% @profile.listings.each do |listing| %>
     <div class="card">
       <div class="card-content">
@@ -29,33 +34,47 @@
         <p>
           <%= listing.created_at.strftime("Created on: %B %d, %Y")%>
         </p>
-        <button class="button is-danger"><%= link_to 'Show Listing', listing %></button>
+        <a class="button is-danger" <%= link_to 'Show Listing', listing %></a>
       </div>
     </div>
   <% end %>
+
   <% if @profile.user_id == current_user.id %>
     <footer class="card-footer">
       <a class="card-footer-item" <%= link_to 'Edit Profile', edit_profile_path(@profile) %></a>
       <a class="card-footer-item" <%= link_to 'Delete Profile', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></a>
     </footer>
   <% end %>
-</div>
+</section>
+
 <section class="reviews">
-    <div class="container">
+  <div class="card">
+    <div class="card-content">
       <h2 class="subtitle is-5"><strong><%= @profile.reviews.count %></strong> Comments</h2>
       <div class="review-form">
-        <h3 class="subtitle is-3">Leave a review or comment!</h3>
-        <%= form_with model: [@profile, @review], local: true do |f| %>
-          <%= f.label :review %>
-          <%= f.text_area :review %>
-          <%= f.submit "Save" %>
-        <% end %>
+        <h3 class="subtitle is-3">Leave a review or comment about <strong><%= @profile.name %>!</strong></h3>
       </div>
-      <% @reviews.each do |review| %>
-        <strong>User: </strong><%= review.user.email %><br/>
-        <strong>Review: </strong><%= review.review %>
-        <p> ------------ </p>
-      <% end %>
     </div>
+  </div>
+  <%= render "shared/review_form" %>
+  
+  <div class="card">
+    <% @reviews.each do |review| %>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+              <%= image_tag review_photo(review), class:'is-rounded' %>
+          </figure>
+        </div>
+        <div class="media-content">
+          <p><strong>User: </strong><%= review.user.email %></p>
+          <p><strong>Review: </strong><%= review.review %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </section>
+
 <a class="button is-danger" <%= link_to 'Back', profiles_path %></a>
