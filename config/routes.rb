@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "/", to: "profiles#home", as: "root"
   get "/404", to: "profiles#not_found"
+  get "/how_this_works", to: "profiles#how_this_works", as: "help"
   
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

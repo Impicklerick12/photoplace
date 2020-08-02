@@ -72,6 +72,9 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def how_this_works
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
