@@ -18,6 +18,7 @@ class ListingsController < ApplicationController
     if current_user.profile == nil
       redirect_to new_profile_path, notice: 'You need to create a profile first!'
     else
+      @categories = Category.all
       @listing = Listing.new
     end
   end
@@ -78,6 +79,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.require(:listing).permit(:title, :description, :price, :profile_id)
+      params.require(:listing).permit(:title, :description, :price, :profile_id, :category_id)
     end
 end
