@@ -35,7 +35,7 @@
           </p>
           <p>
             <% if listing.category_id != nil %>
-              <%= listing.category.name %>
+              <button class="button is-outlined listing"><%= listing.category.name %></button>
             <% else %>
               <%= 0 %>
             <% end %>
