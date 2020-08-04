@@ -31,15 +31,17 @@
           </div>
           
           <div class="field">
-            <%= form.label :category_id %>
-            <%= form.select(:category_id, options_from_collection_for_select(@categories, :id, :name), class:'select') %>
+            <%= form.label :category_id %>:
+            <% categories_array = Category.all.map { |category| [category.name, category.id] } %>
+            <%= form.select(:category_id, options_for_select(categories_array), class:'select') %>
           </div>
 
           <div class="field">
             <p class="control">
-              <%= form.submit "Create Listing!", class:'button is-primary is-outlined' %>
+              <%= form.submit "Create!", class:'button is-primary is-outlined' %>
             </p>
           </div>
+          <%= link_to 'Back', listings_path, class:'button is-link is-outlined' %>
         <% end %>
       </div>
     </div>

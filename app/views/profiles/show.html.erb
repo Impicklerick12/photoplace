@@ -13,7 +13,7 @@
             <p class="title is-4"><%= @profile.name %></p>
             <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
             <p class="subtitle is-6"><%= @profile.description %></p>
-            <a class="button is-danger" <%= link_to 'Create Listing', new_listing_path %></a>
+            <a class="button is-danger is-outlined" <%= link_to 'Create Listing', new_listing_path %></a>
           </div>
         </div>
       </div>
@@ -24,26 +24,36 @@
     <% @profile.listings.each do |listing| %>
       <div class="card">
         <div class="card-content">
-          <p>
-            <%= listing.title %>
-          </p>
-          <p>
-            <%= listing.description %>
-          </p>
-          <p>
-            <%= listing.price %>
-          </p>
-          <p>
-            <% if listing.category_id != nil %>
-              <button class="button is-outlined listing"><%= listing.category.name %></button>
-            <% else %>
-              <%= 0 %>
-            <% end %>
-          </p>
-          <p>
-            <%= listing.created_at.strftime("Created on: %B %d, %Y")%>
-          </p>
-          <a class="button is-danger" <%= link_to 'Show Listing', listing %></a>
+          <div class="media">
+            <div class="media-left">
+              <p>
+                <%= listing.title %>
+              </p>
+              <p>
+                <%= listing.description %>
+              </p>
+              <p>
+                <%= listing.price %>
+              </p>
+              <p>
+                <%= listing.created_at.strftime("Created on: %B %d, %Y")%>
+              </p>
+            </div>
+            <div class="media-right">
+              <% if listing.category_id != nil %>
+                <button class="button is-primary is-rounded is-outlined category-icon">
+                  <span class="icon">
+                    <i class="far fa-image">
+                    </i>
+                  </span>
+                  <span><%= listing.category.name %></span>
+                </button>
+              <% else %>
+                <%= %>
+              <% end %>
+              <%= link_to "Show Listing", listing, class:'button is-warning' %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
@@ -64,8 +74,8 @@
         </div>
         <h2 class="subtitle is-5"><strong><%= @profile.reviews.count %></strong> Comments</h2>
       </div>
+      <%= render "shared/review_form" %>
     </div>
-    <%= render "shared/review_form" %>
     
     <div class="card">
       <% @reviews.each do |review| %>
@@ -86,5 +96,5 @@
     </div>
   </section>
 
-  <a class="button is-danger" <%= link_to 'Back', profiles_path %></a>
+  <a class="button is-danger is-outlined" <%= link_to 'Back', profiles_path %></a>
 </div>

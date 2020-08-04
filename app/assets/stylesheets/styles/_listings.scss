@@ -1,5 +1,8 @@
 .listings {
-    .button.is-outlined.listing {
+    .button.is-primary.is-rounded.is-outlined.category-icon {
         cursor: auto;
+    }
+    .media {
+        justify-content: space-between;
     }
 }
