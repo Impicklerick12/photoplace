@@ -25,7 +25,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
-    if @listing.profile_id != current_user.id
+    if @listing.profile_id != current_user.profile.id
       redirect_to root_path 
     end
   end
@@ -52,7 +52,7 @@ class ListingsController < ApplicationController
   def update
     respond_to do |format|
       if @listing.update(listing_params)
-        format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
+        format.html { redirect_to profile_path(@listing.profile_id), notice: 'Listing was successfully updated.' }
         format.json { render :show, status: :ok, location: @listing }
       else
         format.html { render :edit }

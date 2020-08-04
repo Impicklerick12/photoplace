@@ -13,7 +13,7 @@
             <p class="title is-4"><%= @profile.name %></p>
             <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
             <p class="subtitle is-6"><%= @profile.description %></p>
-            <% if @profile.id == current_user.id %>
+            <% if @profile.id == current_user.profile.id %>
               <a class="button is-danger is-outlined" <%= link_to 'Create Listing', new_listing_path %></a>
             <% end %>
           </div>
