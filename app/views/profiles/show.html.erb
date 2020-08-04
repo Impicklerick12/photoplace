@@ -27,13 +27,13 @@
           <div class="media">
             <div class="media-left">
               <p>
-                <%= listing.title %>
+                <strong><%= listing.title %></strong>
               </p>
               <p>
                 <%= listing.description %>
               </p>
               <p>
-                <%= listing.price %>
+                <strong><%= number_to_currency(listing.price) %></strong>
               </p>
               <p>
                 <%= listing.created_at.strftime("Created on: %B %d, %Y")%>
