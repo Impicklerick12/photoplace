@@ -13,7 +13,9 @@
             <p class="title is-4"><%= @profile.name %></p>
             <p class="subtitle is-6">@<%= @profile.name.downcase %></p>
             <p class="subtitle is-6"><%= @profile.description %></p>
-            <a class="button is-danger is-outlined" <%= link_to 'Create Listing', new_listing_path %></a>
+            <% if @profile.id == current_user.id %>
+              <a class="button is-danger is-outlined" <%= link_to 'Create Listing', new_listing_path %></a>
+            <% end %>
           </div>
         </div>
       </div>
@@ -21,6 +23,7 @@
   </section>
 
   <section class="listings">
+  <h3 class="subtitle is-3"><strong><%= @profile.name %>'s Listings</strong></h3>
     <% @profile.listings.each do |listing| %>
       <div class="card">
         <div class="card-content">
