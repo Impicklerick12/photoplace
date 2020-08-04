@@ -22,19 +22,8 @@
         
 
         <div class="field">
-          <div class="file is-centered is-boxed is-info has-name">
-            <label class="file-label">
-              <%= form.file_field :photo, class:'file-input', type:'file', name:'photo' %>
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fas fa-upload"></i>
-                </span>
-                <span class="file-label">
-                  Upload Profile Image
-                </span>
-              </span>
-            </label>
-          </div>
+          <%= form.label :photo %>
+          <%= form.file_field :photo %>
         </div>
         
         <div class="field">
